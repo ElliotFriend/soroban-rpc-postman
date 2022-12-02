@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "9ccf291a-944a-4037-8655-1d6c35d20cf8",
+		"name": "Soroban-RPC Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5352332"
+	},
+	"item": [
+		{
+			"name": "getAccount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getAccount\",\n    \"params\": {\n        \"address\": \"GB3SSIX7JVRNFXKVBGXC4L66NPTSO3TU3UFJUWAWMMDVVOCXMIDXXRAI\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getHealth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getHealth\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLatestLedger (WIP)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getLatestLedger\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getContractData",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getContractData\",\n    \"params\": {\n        \"contractId\": \"284cdbbca83391c0f1c1b88c0386d332fa174a54ccf76a3750af33c7ed55e8cc\",\n        \"key\": \"AAAABAAAAAEAAAAAAAAAAQAAAAUAAAAHVG9rZW5JZAA=\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEvents (WIP)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getAccount\",\n    \"params\": {\n        \"address\": \"GB3SSIX7JVRNFXKVBGXC4L66NPTSO3TU3UFJUWAWMMDVVOCXMIDXXRAI\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNetwork (WIP)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getNetwork\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTransactionStatus",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getTransactionStatus\",\n    \"params\": {\n        \"hash\": \"8729dfc9faff91d97549116942c75af58aa920c667bc8e25d93dbd573ba31d8b\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "requestAirdrop (WIP)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"requestAirdrop\",\n    \"params\": {\n        \"account\": \"GBXK4N4RL5DJSMMJMTJIJ7JKY7JA7WULJGKOWNH4KWFPFIRAI3LOXVXE\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sendTransaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"sendTransaction\",\n    \"params\": {\n        \"xdr\": {\n            \"TransactionEnvelope\": \"AAAAAgAAAACnT7hZtbB7ms3Cq2od9shzAy9Ztt6+w+IIIEFenEaCcAAAAGQAC0heAAAABwAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACwAAAAAAAAAAAAAAAAAAAAGcRoJwAAAAQDKz0OTwtKlCkdfc372zIfWQq4mhLFl4zCpzrr9Y+lkeaTVTu143oQ8miQvy1kvs0RPmPQ8+WREIOOG/poOh9AU=\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "simulateTransaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"simulateTransaction\",\n    \"params\": {\n        \"xdr\": {\n            \"TransactionEnvelope\": \"AAAAAgAAAACnT7hZtbB7ms3Cq2od9shzAy9Ztt6+w+IIIEFenEaCcAAAAGQAC0heAAAABwAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACwAAAAAAAAAAAAAAAAAAAAGcRoJwAAAAQDKz0OTwtKlCkdfc372zIfWQq4mhLFl4zCpzrr9Y+lkeaTVTu143oQ8miQvy1kvs0RPmPQ8+WREIOOG/poOh9AU=\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SOROBAN_RPC_URL",
+			"value": "http://127.0.0.1:8000/soroban/rpc",
+			"type": "string"
+		}
+	]
+}

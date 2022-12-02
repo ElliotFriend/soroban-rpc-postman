@@ -74,6 +74,12 @@ Soroban-RPC endpoints.
 
 ### `getAccount`
 
+When invoking `getAccount`, you must supply the account's public key as the
+`address` parameter.
+
+The response is intended to be a *minimal* set of account information, and will
+include the account ID, sequence number, and balances (not yet?).
+
 #### `getAccount` Request <!-- omit in toc -->
 
 ```json5
@@ -90,7 +96,14 @@ Soroban-RPC endpoints.
 #### `getAccount` Response <!-- omit in toc -->
 
 ```json5
-"something"
+{
+    "jsonrpc": "2.0",
+    "id": 8675309,
+    "result": {
+        "id": "GB3SSIX7JVRNFXKVBGXC4L66NPTSO3TU3UFJUWAWMMDVVOCXMIDXXRAI",
+        "sequence": "3435501390397448"
+    }
+}
 ```
 
 ### `getHealth`
