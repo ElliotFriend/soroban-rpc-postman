@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "json-rpc-2.0": "^1.4.1",
+    "node-fetch2": "^1.6.3"
+  }
+}
