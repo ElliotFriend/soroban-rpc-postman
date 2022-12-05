@@ -412,7 +412,7 @@ use a "classic" stellar transaction?
 #### `simulateTransaction` Response <!-- omit in toc -->
 
 ```json5
-"something"
+"work-in-progress"
 ```
 
 [design-doc]: <https://docs.google.com/document/d/1TZUDgo_3zPz7TiPMMHVW_mtogjLyPL0plvzGMsxSz6A/edit#heading=h.ohr0vgpzoi7r>
