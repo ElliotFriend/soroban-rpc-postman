@@ -13,13 +13,18 @@ Here lies RPC requests made from postman to a Soroban-RPC endpoint
   - [`getAccount`](#getaccount)
   - [`getHealth`](#gethealth)
   - [`getLatestLedger` (WIP)](#getlatestledger-wip)
+  - [`getLedgerEntry`](#getledgerentry)
   - [`getContractData`](#getcontractdata)
-  - [`getEvents` (WIP)](#getevents-wip)
+  - [`getEvents`](#getevents)
   - [`getNetwork` (WIP)](#getnetwork-wip)
   - [`getTransactionStatus`](#gettransactionstatus)
   - [`requestAirdrop` (WIP)](#requestairdrop-wip)
   - [`sendTransaction`](#sendtransaction)
   - [`simulateTransaction`](#simulatetransaction)
+
+> _Note:_ Items listed as a work-in-progress (WIP) reflects, as far as my
+> understanding goes, the current state of the Soroban-RPC methods that are
+> available and working.
 
 ## What's the Point Here?
 
@@ -31,7 +36,7 @@ Here's what you'll find in this repository:
 - A collection of Postman requests that will get you going toward making those
   RPC requests
 - A place to get started writing scripts and apps in Python and JavaScript
-  (because those are the main languages I use.)
+  (because those are the main languages I know.)
 
 ## Relevant Documentation
 
@@ -127,6 +132,11 @@ Response body:
 When invoking `getHealth`, you are checking on the general well-being of the
 node. No parameters are required, nor are they accepted.
 
+Based on my (admittedly limited) understanding of the Soroban-RPC codebase, it
+appears (at the moment) any `getHealth` request will simply return "healthy."
+It's unclear what ultimately will be the measure of health, or when it will be
+implemented.
+
 #### `getHealth` Request <!-- omit in toc -->
 
 ```json5
@@ -184,6 +194,52 @@ According to the [design-doc], it should return something like this (someday?):
 }
 ```
 
+### `getLedgerEntry`
+
+Invoking `getLedgerEntry` is useful for reading the current value of
+`CONTRACT_DATA` ledger entries directly through RPC. This allows you to directly
+inspect the _current state_ of a contract.
+
+#### `getLedgerEntry` Request <!-- omit in toc -->
+
+The tricky part for this method is getting a useable value for the
+`xdr.LedgerKey` parameter. The contract below is a deployed copy of the
+[`increment` example][increment-contract] from the Soroban documentation
+examples. As such, the `LedgerKey` we need to provide is an xdr-encoded
+`LedgerKeyContractData` object made with the `contractId` and the `ScVal`
+representing the key.
+
+This can be achieved using the `soroban` branch of the python `stellar_sdk`. A
+starter script is supplied in `sc_val.py`
+
+```json5
+{
+    "jsonrpc": "2.0",
+    "id": 8675309,
+    "method": "getLedgerEntry",
+    "params": {
+        "xdr": {
+            "LedgerKey": "pimawTd4so6Re0r2HRYHQJK1oU6Sx+k1HYJRAOQYd+cAAAAFAAAAB0NPVU5URVIA"
+        }
+    }
+}
+```
+
+#### `getLedgerEntry` Response <!-- omit in toc -->
+
+```json5
+{
+    "jsonrpc": "2.0",
+    "id": 8675309,
+    "result": "getLedgerEntry",
+    "params": {
+        "xdr": {
+            "LedgerKey": "something"
+        }
+    }
+}
+```
+
 ### `getContractData`
 
 > **WARNING**: `getContractData` WILL SOON BE DEPRECATED IN FAVOR OR
@@ -201,7 +257,7 @@ example][increment-contract] from the Soroban documentation examples. As such,
 the `key` we need to provide is an xdr-encoded  `ScVal` of the symbol `COUNTER`.
 
 This can be achieved using the `soroban` branch of the python `stellar_sdk`. A
-starter script is suppllied in `sc_val.py`
+starter script is supplied in `sc_val.py`
 
 ```json5
 {
@@ -246,7 +302,7 @@ The response with the WASM byte-code looks like this:
 "something
 ```
 
-### `getEvents` (WIP)
+### `getEvents`
 
 The `getEvents` method can be used for a client to retrieve a filtered list of
 events that are emitted by a specified ledger range.
@@ -266,7 +322,20 @@ events that are emitted by a specified ledger range.
             "contractIds": [
                 "a6299ac13778b28e917b4af61d16074092b5a14e92c7e9351d825100e41877e7",
                 "4018b6f8f2d50449d001920362be249d2bdf768d5a6da6ce73146a994d8747c7"
+            ],
+            "topics": [
+                // "AAAABQAAAAh0cmFuc2Zlcg==" === ScSymbol("transfer").toXdr().toString('base64')
+                // Matches any token transfer events
+                ["AAAABQAAAAh0cmFuc2Zlcg==", "*", "*"],
+                // Matches any token transfer events to recipient: `GABC...123`
+                ["AAAABQAAAAh0cmFuc2Zlcg==", "*", "GABC...123"],
+                // Matches only token transfers from `GDEF...456` to `GABC...123`
+                ["AAAABQAAAAh0cmFuc2Zlcg==", "GDEF...456", "GABC...123"],
             ]
+        },
+        "pagination": {
+            "cursor": "1234-1",
+            "limit": 100
         }
     }
 }
@@ -275,7 +344,23 @@ events that are emitted by a specified ledger range.
 #### `getEvents` Response <!-- omit in toc -->
 
 ```json5
-"work-in-progress"
+{
+    "jsonrpc": "2.0",
+    "id": 8675309,
+    "result": {
+        "events": {
+            "ledger": "<string>", // string-ified sequence number of the ledger
+            "ledgerClosedAt": "<string>", // ISO8601 timestamp of the ledger closing time
+            "contractId": "<string>", // id of the emitting contract
+            "id": "<string>", // event's unique id
+            "pagingToken": "<string>", // same as `id` field, but expected here for paging
+            "topic": "<xdr.ScVal[]>", // list of topics this event was emitted with
+            "value": {
+                "xdr": "<xdr.ScVal>" // the body of the event (base64-encoded string)
+            }
+        }
+    }
+}
 ```
 
 ### `getNetwork` (WIP)
@@ -404,7 +489,9 @@ use a "classic" stellar transaction?
     "id": 8675309,
     "method": "simulateTransaction",
     "params": {
-        "xdr.TransactionEnvelope": "AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw=="
+        "xdr": {
+            "TransactionEnvelope": "AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw=="
+        }
     }
 }
 ```
