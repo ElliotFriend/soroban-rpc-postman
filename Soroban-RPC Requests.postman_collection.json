@@ -99,13 +99,36 @@
 			"response": []
 		},
 		{
-			"name": "getEvents (WIP)",
+			"name": "getLedgerEntry",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getEvents\",\n    \"params\": {\n        \"startLedger\": \"100\",\n        \"endLedger\": \"1000\",\n        \"filters\": {\n            \"type\": \"contract\",\n            \"contractIds\": [\n                \"a6299ac13778b28e917b4af61d16074092b5a14e92c7e9351d825100e41877e7\",\n                \"4018b6f8f2d50449d001920362be249d2bdf768d5a6da6ce73146a994d8747c7\"\n            ]\n        }\n    }\n}",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getLedgerEntry\",\n    \"params\": {\n        \"key\": \"pimawTd4so6Re0r2HRYHQJK1oU6Sx+k1HYJRAOQYd+cAAAAFAAAAB0NPVU5URVIA\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SOROBAN_RPC_URL}}",
+					"host": [
+						"{{SOROBAN_RPC_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEvents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"getEvents\",\n    \"params\": {\n        \"startLedger\": \"100\",\n        \"endLedger\": \"1000\",\n        \"filters\": {\n            \"type\": \"contract\",\n            \"contractIds\": [\n                \"a6299ac13778b28e917b4af61d16074092b5a14e92c7e9351d825100e41877e7\",\n                \"4018b6f8f2d50449d001920362be249d2bdf768d5a6da6ce73146a994d8747c7\"\n            ],\n            \"topics\": [\n                [\"AAAABQAAAAh0cmFuc2Zlcg==\", \"*\", \"*\"],\n                [\"AAAABQAAAAh0cmFuc2Zlcg==\", \"*\", \"GABC...123\"],\n                [\"AAAABQAAAAh0cmFuc2Zlcg==\", \"GDEF...456\", \"GABC...123\"]\n            ]\n        },\n        \"pagination\": {\n            \"cursor\": \"1234-1\",\n            \"limit\": 100\n        }\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -197,7 +220,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"sendTransaction\",\n    \"params\": {\n        \"xdr.TransactionEnvelope\": \"AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw==\"\n    }\n}",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"sendTransaction\",\n    \"params\": {\n        \"transaction\": \"AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw==\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,7 +243,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"simulateTransaction\",\n    \"params\": {\n        \"xdr.TransactionEnvelope\": \"AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw==\"\n    }\n}",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 8675309,\n    \"method\": \"simulateTransaction\",\n    \"params\": {\n        \"transaction\": \"AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw==\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
