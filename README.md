@@ -218,9 +218,7 @@ starter script is supplied in `sc_val.py`
     "id": 8675309,
     "method": "getLedgerEntry",
     "params": {
-        "xdr": {
-            "LedgerKey": "pimawTd4so6Re0r2HRYHQJK1oU6Sx+k1HYJRAOQYd+cAAAAFAAAAB0NPVU5URVIA"
-        }
+        "key": "pimawTd4so6Re0r2HRYHQJK1oU6Sx+k1HYJRAOQYd+cAAAAFAAAAB0NPVU5URVIA"
     }
 }
 ```
@@ -231,11 +229,10 @@ starter script is supplied in `sc_val.py`
 {
     "jsonrpc": "2.0",
     "id": 8675309,
-    "result": "getLedgerEntry",
-    "params": {
-        "xdr": {
-            "LedgerKey": "something"
-        }
+    "result":  {
+        "xdr": "<xdr-encoded-string>",
+        "lastModifiedLedger": "1166180",
+        "latestLedger": "1166323"
     }
 }
 ```
@@ -461,9 +458,7 @@ out if it was successful or not, and to get any return from the invocation.
     "id": 8675309,
     "method": "sendTransaction",
     "params": {
-        "xdr": {
-            "TransactionEnvelope": "AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw=="
-        }
+        "transaction": "AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw=="
     }
 }
 ```
@@ -489,9 +484,7 @@ use a "classic" stellar transaction?
     "id": 8675309,
     "method": "simulateTransaction",
     "params": {
-        "xdr": {
-            "TransactionEnvelope": "AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw=="
-        }
+        "transaction": "AAAAAgAAAABndwzjYbYj4WubbspKSP2ugBwwmtTRSNYwrO3eu2TT9wAAAGQAEcpoAAAABgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACgAAAAVoZWxsbwAAAAAAAAEAAAAHc29yb2JhbgAAAAAAAAAAAbtk0/cAAABA7S8ZDIj5I/NrZKIEtU9DDF/XNiUlKslxuCkQxUnpz++9+yZ2DdbrCI8yO+CP/BP+hKr5gxfBxJQMdDuAW5LHBw=="
     }
 }
 ```
